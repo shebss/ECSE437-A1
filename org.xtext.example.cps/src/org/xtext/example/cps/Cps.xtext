@@ -1,0 +1,56 @@
+grammar org.xtext.example.cps.CPS with org.eclipse.xtext.common.Terminals
+
+generate cps "http://www.xtext.org/example/cps/Cps"
+
+// Root element - the entire course planning system
+CoursePlanningSystem:
+    'Program' name=ID '{'
+        (courses+=Course)*
+        (students+=Student)*
+    '}'
+;
+
+// Course definition
+Course:
+    'Course' courseNumber=ID name=STRING '{'
+        'credits' credits=INT
+        'year' year=INT
+        'term' term=Term
+        ('prerequisites' prerequisites=Prerequisite)?
+        ('corequisites' corequisites=Prerequisite)?
+    '}'
+;
+
+// Term enumeration
+enum Term:
+    FALL='fall' | WINTER='winter' | BOTH='both'
+;
+
+// Prerequisite/Corequisite expression (supports nested AND/OR)
+Prerequisite:
+    OrPrerequisite
+;
+
+OrPrerequisite returns Prerequisite:
+    AndPrerequisite ({OrPrerequisite.left=current} 'OR' right=AndPrerequisite)*
+;
+
+AndPrerequisite returns Prerequisite:
+    PrimaryPrerequisite ({AndPrerequisite.left=current} 'AND' right=PrimaryPrerequisite)*
+;
+
+PrimaryPrerequisite returns Prerequisite:
+    CourseReference | '(' Prerequisite ')'
+;
+
+CourseReference:
+    course=[Course|ID]
+;
+
+// Student definition
+Student:
+    'Student' name=ID '{'
+        'completed' '{' (completedCourses+=[Course|ID])* '}'
+        'maxCreditsPerTerm' maxCreditsPerTerm=INT
+    '}'
+;

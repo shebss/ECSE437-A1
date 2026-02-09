@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="cps" nsURI="http://www.xtext.org/example/cps/Cps" nsPrefix="cps">
+  <eClassifiers xsi:type="ecore:EClass" name="CoursePlanningSystem">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="courses" upperBound="-1"
+        eType="#//Course" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="students" upperBound="-1"
+        eType="#//Student" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Course">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="courseNumber" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="credits" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="year" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="term" eType="#//Term"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="prerequisites" eType="#//Prerequisite"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="corequisites" eType="#//Prerequisite"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Term">
+    <eLiterals name="FALL" literal="fall"/>
+    <eLiterals name="WINTER" value="1" literal="winter"/>
+    <eLiterals name="BOTH" value="2" literal="both"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Prerequisite"/>
+  <eClassifiers xsi:type="ecore:EClass" name="CourseReference" eSuperTypes="#//Prerequisite">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="course" eType="#//Course"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Student">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="completedCourses" unique="false"
+        upperBound="-1" eType="#//Course"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxCreditsPerTerm" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OrPrerequisite" eSuperTypes="#//Prerequisite">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//Prerequisite"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//Prerequisite"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AndPrerequisite" eSuperTypes="#//Prerequisite">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//Prerequisite"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//Prerequisite"
+        containment="true"/>
+  </eClassifiers>
+</ecore:EPackage>
