@@ -2,7 +2,7 @@ grammar org.xtext.example.cps.CPS with org.eclipse.xtext.common.Terminals
 
 generate cps "http://www.xtext.org/example/cps/Cps"
 
-// Root element - the entire course planning system
+// root
 CoursePlanningSystem:
     'Program' name=ID '{'
         (courses+=Course)*
@@ -10,7 +10,6 @@ CoursePlanningSystem:
     '}'
 ;
 
-// Course definition
 Course:
     'Course' courseNumber=ID name=STRING '{'
         'credits' credits=INT
@@ -21,12 +20,11 @@ Course:
     '}'
 ;
 
-// Term enumeration
 enum Term:
     FALL='fall' | WINTER='winter' | BOTH='both'
 ;
 
-// Prerequisite/Corequisite expression (supports nested AND/OR)
+// (supports nested AND/OR)
 Prerequisite:
     OrPrerequisite
 ;
@@ -47,7 +45,6 @@ CourseReference:
     course=[Course|ID]
 ;
 
-// Student definition
 Student:
     'Student' name=ID '{'
         'completed' '{' (completedCourses+=[Course|ID])* '}'
