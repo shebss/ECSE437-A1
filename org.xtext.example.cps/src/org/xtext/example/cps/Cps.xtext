@@ -49,5 +49,17 @@ Student:
     'Student' name=ID '{'
         'completed' '{' (completedCourses+=[Course|ID])* '}'
         'maxCreditsPerTerm' maxCreditsPerTerm=INT
+        (schedule+=TermAssignment)*
     '}'
+;
+
+TermAssignment:
+    {TermAssignment}
+    'Term' termNumber=INT season=TermSeason '{'
+        (assignedCourses+=[Course|ID])*
+    '}'
+;
+
+enum TermSeason:
+    FALL='Fall' | WINTER='Winter'
 ;
