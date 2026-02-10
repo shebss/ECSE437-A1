@@ -11,6 +11,10 @@
       <genEnumLiterals ecoreEnumLiteral="CPS.ecore#//Term/WINTER"/>
       <genEnumLiterals ecoreEnumLiteral="CPS.ecore#//Term/BOTH"/>
     </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="CPS.ecore#//TermSeason">
+      <genEnumLiterals ecoreEnumLiteral="CPS.ecore#//TermSeason/FALL"/>
+      <genEnumLiterals ecoreEnumLiteral="CPS.ecore#//TermSeason/WINTER"/>
+    </genEnums>
     <genClasses ecoreClass="CPS.ecore#//CoursePlanningSystem">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CPS.ecore#//CoursePlanningSystem/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CPS.ecore#//CoursePlanningSystem/courses"/>
@@ -33,6 +37,12 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CPS.ecore#//Student/name"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CPS.ecore#//Student/completedCourses"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CPS.ecore#//Student/maxCreditsPerTerm"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CPS.ecore#//Student/schedule"/>
+    </genClasses>
+    <genClasses ecoreClass="CPS.ecore#//TermAssignment">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CPS.ecore#//TermAssignment/termNumber"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CPS.ecore#//TermAssignment/season"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CPS.ecore#//TermAssignment/assignedCourses"/>
     </genClasses>
     <genClasses ecoreClass="CPS.ecore#//OrPrerequisite">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CPS.ecore#//OrPrerequisite/left"/>
