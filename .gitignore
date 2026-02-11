@@ -9,23 +9,13 @@ target/
 # Eclipse
 .metadata/
 .settings/
-*.launch
-.project
-.classpath
-.loadpath
 
 # EMF Generated Files
 model/generated/*.ecore
 model/generated/*.genmodel
 *.xmi.bak
 
-# Generated output from AutoCPS
 data/*.xmi
 
-# Java
-*.class
-*.jar
-*.war
-*.ear
-*.log
+
 

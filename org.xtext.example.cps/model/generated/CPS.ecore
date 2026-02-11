@@ -33,6 +33,18 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="completedCourses" unique="false"
         upperBound="-1" eType="#//Course"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxCreditsPerTerm" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="schedule" upperBound="-1"
+        eType="#//TermAssignment" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TermAssignment">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="termNumber" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="season" eType="#//TermSeason"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="assignedCourses" unique="false"
+        upperBound="-1" eType="#//Course"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="TermSeason">
+    <eLiterals name="FALL" literal="Fall"/>
+    <eLiterals name="WINTER" value="1" literal="Winter"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="OrPrerequisite" eSuperTypes="#//Prerequisite">
     <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//Prerequisite"
