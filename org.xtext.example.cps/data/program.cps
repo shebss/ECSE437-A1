@@ -56,21 +56,35 @@ Program MyUniversityProgram {
     }
     
     Course COMP421 "Database Systems" {
-        credits 3
+        credits 4
         year 5
         term winter
         prerequisites (COMP206 OR COMP251) AND COMP302
         corequisites ECSE437
     }
     
-    // students
+    
+// completed foundational courses
     Student hihi {
-        completed { COMP250, COMP251, COMP206 }
+        completed { COMP206 COMP250 ECSE321 }
         maxCreditsPerTerm 15
     }
-    
+
+    // completed year 2 and some year 3
     Student haha {
-        completed { COMP250, COMP251, COMP206, COMP302 }
+        completed { COMP206 COMP250 ECSE321 COMP251 COMP302 COMP273 }
         maxCreditsPerTerm 12
+    }
+
+    // only advanced courses remaining
+    Student hehe {
+        completed { COMP206 COMP250 ECSE321 COMP251 COMP273 COMP302 COMP303 }
+        maxCreditsPerTerm 9
+    }
+
+    // low credit limit
+    Student hoho {
+        completed { COMP206 COMP250 }
+        maxCreditsPerTerm 3
     }
 }

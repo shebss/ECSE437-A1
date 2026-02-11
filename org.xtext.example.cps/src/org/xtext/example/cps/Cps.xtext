@@ -11,7 +11,7 @@ CoursePlanningSystem:
 ;
 
 Course:
-    'Course' courseNumber=ID name=STRING '{'
+    'Course' name=ID courseTitle=STRING '{'
         'credits' credits=INT
         'year' year=INT
         'term' term=Term
